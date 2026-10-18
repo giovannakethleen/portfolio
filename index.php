@@ -8,10 +8,12 @@ $linkedin = "https://www.linkedin.com/in/giovannakethleen/";
 $github = "https://github.com/giovannakethleen";
 
 $projetos = [
-    ["numero"=>"01","titulo"=>"RocketNotes","descricao"=>"Aplicação web para criação e organização de notas, com autenticação de usuários e categorização por tags.","tags"=>["NodeJS","ReactJS"],"link"=>"https://github.com/giovannakethleen/rockeatnotesFront"],
-    ["numero"=>"02","titulo"=>"Gerador de Certificados","descricao"=>"Sistema para criação automática de certificados personalizados a partir de templates e listas de participantes.","tags"=>["Angular","TypeScript"],"link"=>"https://github.com/giovannakethleen/Certificad"],
-    ["numero"=>"03","titulo"=>"Links","descricao"=>"Página de links personalizados no estilo Linktree. Meu primeiro projeto, desenvolvido em 2023.","tags"=>["HTML","CSS","JavaScript"],"link"=>"https://github.com/giovannakethleen/links"],
-    ["numero"=>"04","titulo"=>"Formulário de Eventos","descricao"=>"Formulário de inscrição para eventos com validação de campos. Meu segundo projeto, desenvolvido em 2023.","tags"=>["HTML","CSS","JavaScript"],"link"=>"https://github.com/giovannakethleen/form"],
+    ["numero"=>"01","titulo"=>"Cosmic Pinball","descricao"=>"Jogo de pinball com temática cósmica.","tags"=>["Jogo","Web"],"link"=>"https://gk-pinball.netlify.app/","github"=>"https://github.com/giovannakethleen/pinball-game"],
+    ["numero"=>"02","titulo"=>"Nebula Strike","descricao"=>"Jogo com temática espacial.","tags"=>["Jogo","Web"],"link"=>"https://gk-nebula-strike.netlify.app/","github"=>"https://github.com/giovannakethleen/nebula-strike"],
+    ["numero"=>"03","titulo"=>"RocketNotes","descricao"=>"Aplicação web para criação e organização de notas, com autenticação de usuários e categorização por tags.","tags"=>["NodeJS","ReactJS"],"link"=>"https://github.com/giovannakethleen/rockeatnotesFront"],
+    ["numero"=>"04","titulo"=>"Gerador de Certificados","descricao"=>"Sistema para criação automática de certificados personalizados a partir de templates e listas de participantes.","tags"=>["Angular","TypeScript"],"link"=>"https://github.com/giovannakethleen/Certificad"],
+    ["numero"=>"05","titulo"=>"Links","descricao"=>"Página de links personalizados no estilo Linktree. Meu primeiro projeto, desenvolvido em 2023.","tags"=>["HTML","CSS","JavaScript"],"link"=>"https://github.com/giovannakethleen/links"],
+    ["numero"=>"06","titulo"=>"Formulário de Eventos","descricao"=>"Formulário de inscrição para eventos com validação de campos. Meu segundo projeto, desenvolvido em 2023.","tags"=>["HTML","CSS","JavaScript"],"link"=>"https://github.com/giovannakethleen/form"],
 ];
 
 $contatos = [
@@ -125,11 +127,26 @@ $ano = date("Y");
             <div class="row g-4">
                 <?php foreach ($projetos as $i => $p): ?>
                 <div class="col-md-6">
-                    <a href="<?= htmlspecialchars($p['link']) ?>" target="_blank" class="project-card-link">
+                    <?php if (isset($p['github'])): ?>
+                    <div class="project-card-link">
+                    <?php else: ?>
+                    <a href="<?= htmlspecialchars($p['link']) ?>" target="_blank" rel="noopener noreferrer" class="project-card-link">
+                    <?php endif; ?>
                         <div class="project-card <?= $i === 0 ? 'featured' : '' ?>">
                             <div class="project-top">
                                 <span class="project-number"><?= $p['numero'] ?></span>
+                                <?php if (isset($p['github'])): ?>
+                                <div class="project-actions">
+                                    <a href="<?= htmlspecialchars($p['link']) ?>" target="_blank" rel="noopener noreferrer" class="project-action" aria-label="Jogar <?= htmlspecialchars($p['titulo']) ?>">
+                                        <span>Jogar</span> <i class="bi bi-box-arrow-up-right"></i>
+                                    </a>
+                                    <a href="<?= htmlspecialchars($p['github']) ?>" target="_blank" rel="noopener noreferrer" class="project-action" aria-label="Ver código de <?= htmlspecialchars($p['titulo']) ?>">
+                                        <i class="bi bi-github"></i> <span>Código</span>
+                                    </a>
+                                </div>
+                                <?php else: ?>
                                 <i class="bi bi-arrow-up-right project-arrow"></i>
+                                <?php endif; ?>
                             </div>
                             <h3 class="project-title"><?= htmlspecialchars($p['titulo']) ?></h3>
                             <p class="project-desc"><?= htmlspecialchars($p['descricao']) ?></p>
@@ -139,7 +156,11 @@ $ano = date("Y");
                                 <?php endforeach; ?>
                             </div>
                         </div>
+                    <?php if (isset($p['github'])): ?>
+                    </div>
+                    <?php else: ?>
                     </a>
+                    <?php endif; ?>
                 </div>
                 <?php endforeach; ?>
             </div>

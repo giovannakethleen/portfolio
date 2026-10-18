@@ -389,6 +389,28 @@ body {
   position: relative;
   z-index: 1;
 }
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.project-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.project-action:hover {
+  border-color: var(--purple);
+  color: var(--text);
+  transform: translateY(-2px);
+}
 .project-number {
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.85rem;
